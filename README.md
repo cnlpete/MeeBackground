@@ -6,6 +6,8 @@ It was inspired by [Wleux](http://khertan.net/wleux) and [Mustr](http://thp.io/2
 
 It uses the [DesktopPr API](https://www.desktoppr.co/api).
 
+If you want to support me or this app, [buy me a beer](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WUWGSGAK8K7ZN) (in &euro;).
+
 Upcoming
 ----------
 - more backends (e.g. colorlovers patterns, palettes & colors
