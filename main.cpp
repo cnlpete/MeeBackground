@@ -12,6 +12,7 @@
 #include <QtGui/QApplication>
 #include <QtDeclarative/QDeclarativeContext>
 #include "qmlapplicationviewer.h"
+#include <QDir>
 
 #include "qmlutils.hh"
 
@@ -28,6 +29,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     viewer.rootContext()->setContextProperty("QMLUtils", QMLUtils::instance());
     viewer.rootContext()->setContextProperty("APP_VERSION", APP_VERSION);
 
+    if (!QDir("/home/user/MyDocs/MeeBackground/").exists())
+        QDir().mkdir("/home/user/MyDocs/MeeBackground/");
     viewer.rootContext()->setContextProperty("PATH", "/home/user/MyDocs/MeeBackground/");
 
     viewer.setMainQmlFile(QLatin1String("qml/Harmattan/main.qml"));
