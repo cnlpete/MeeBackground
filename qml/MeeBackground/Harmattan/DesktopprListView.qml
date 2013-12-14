@@ -32,7 +32,6 @@ Page {
 
     DesktopprModel {
         id: desktopprmodel
-
     }
 
     BusyIndicator {
@@ -42,32 +41,43 @@ Page {
         visible: desktopprmodel.running
     }
 
-    ListView {
-        id: listView
-        property int imageItemHeight: 150
-        width: parent.width
-
-        footer: Item {
-            height: listView.imageItemHeight
-            width: parent.width
-
-
-            Button {
-                anchors.centerIn: parent
-                text: qsTr('More')
-                onClicked: desktopprmodel.load()
-                enabled: !desktopprmodel.running
-                width: parent.width * .5
-            }
-        }
-
-        anchors.fill: parent
-        model: desktopprmodel
-
-        delegate: ListViewDelegate { }
+    PageHeader {
+        id: pageHeader
+        text: qsTr("DesktopPr")
     }
 
-    ScrollDecorator {
-        flickableItem: listView
+    Item {
+        anchors {
+            top: pageHeader.bottom
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
+        ListView {
+            id: listView
+            property int imageItemHeight: 150
+            width: parent.width
+
+            footer: Item {
+                height: listView.imageItemHeight
+                width: parent.width
+
+                Button {
+                    anchors.centerIn: parent
+                    text: qsTr('More')
+                    onClicked: desktopprmodel.load()
+                    enabled: !desktopprmodel.running
+                    width: parent.width * .5
+                }
+            }
+
+            anchors.fill: parent
+            model: desktopprmodel
+            delegate: ListViewDelegate { }
+        }
+
+        ScrollDecorator {
+            flickableItem: listView
+        }
     }
 }

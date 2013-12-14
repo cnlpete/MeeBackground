@@ -38,23 +38,34 @@ Page {
         visible: favoritesModel.running
     }
 
-    ListView {
-        id: listView
-        width: parent.width
-
-        anchors.fill: parent
-        model: favoritesModel
-
-        delegate: ListViewDelegate { }
+    PageHeader {
+        id: pageHeader
+        text: qsTr("Favorites")
     }
 
-    ScrollDecorator {
-        flickableItem: listView
-    }
+    Item {
+        anchors {
+            top: pageHeader.bottom
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
+        ListView {
+            id: listView
+            width: parent.width
+            anchors.fill: parent
+            model: favoritesModel
+            delegate: ListViewDelegate { }
+        }
 
-    EmptyListInfoLabel {
-        text: qsTr("No favorites yet. Add some")
-        anchors.fill: parent
-        visible: favoritesModel.count == 0
+        ScrollDecorator {
+            flickableItem: listView
+        }
+
+        EmptyListInfoLabel {
+            text: qsTr("No favorites yet. Add some")
+            anchors.fill: parent
+            visible: favoritesModel.count == 0
+        }
     }
 }
