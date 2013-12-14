@@ -117,6 +117,10 @@ bool QMLUtils::deleteFile(const QString &path) {
     return false;
 }
 
+bool QMLUtils::fileExists(const QString &path) {
+    return QFile(path).exists();
+}
+
 void QMLUtils::setWallpaper(QObject *imageObj, const int offset) {
 #ifdef Q_OS_HARMATTAN
     QGraphicsObject *item = qobject_cast<QGraphicsObject*>(imageObj);

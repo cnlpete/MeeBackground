@@ -35,19 +35,21 @@ ListModel {
                         var rs = tx.executeSql('SELECT * FROM favorites ORDER BY addedat DESC;')
                         for (var i = 0; i < rs.rows.length; i++) {
                             var obj = rs.rows.item(i)
-                            root.append({
-                                            id: obj.id,
-                                            url: obj.path,
-                                            thumb: obj.path,
-                                            title: obj.title,
-                                            username: obj.username,
-                                            source: obj.source,
-                                            addedat: obj.addedat
-                                        })
+                            if (QMLUtils.fileExists(obj.path))
+                                root.append({
+                                                id: obj.id,
+                                                url: obj.path,
+                                                thumb: obj.path,
+                                                title: obj.title,
+                                                username: obj.username,
+                                                source: obj.source,
+                                                addedat: obj.addedat
+                                            })
+                            //else
+                                //TODO
+                                // remove from database?
                         }
                     })
-
-        ;; //TODO
     }
 
     function isFavorite(id, source) {
