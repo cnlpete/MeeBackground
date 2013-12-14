@@ -155,10 +155,7 @@ Page {
 
     SimplePopup {
         id: privacypolicy
-        text: "ttrss will collect the login information you give at startup and nothing more.
-                    Your login data is stored in a configuration file on your device and nowhere else.
-                    ttrss will only use it to establish connections to the available services and/or servers.
-                    The login data is not given to any third party and is not used for any other purpose than the functions of ttrss.
+        text: "MeeBackground will store the selected images on your phone only and never publish/upload that information anywhere.
                     <br><br>
                     If you have any questions, concerns, or comments about our privacy policy you may contact us via:<br>
                     <a href='mailto:cnlpete@cnlpete.de'>cnlpete@cnlpete.de</a>"
