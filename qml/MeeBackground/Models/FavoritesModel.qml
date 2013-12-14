@@ -68,7 +68,6 @@ ListModel {
         QMLUtils.saveImg(obj, dst)
 
         var db = getDB()
-        //TODO
         var res = false
         db.transaction(function(tx) {
                            var rs = tx.executeSql('INSERT OR REPLACE INTO favorites VALUES (?,?,?,?,?,?);', [id,title,username,dst,source,root.count])
@@ -85,6 +84,41 @@ ListModel {
                             source: source,
                             addedat: root.count
                         })
+        }
+
+        return res
+    }
+
+    function removeFavorite(id, source) {
+        var db = getDB()
+        var res = false
+        db.transaction(function(tx) {
+                           var rs = tx.executeSql('SELECT path FROM favorites WHERE id=? AND source=?;', [id, source])
+                           //console.log(rs.rowsAffected)
+                           if (rs.rows.length == 1) {
+                               var obj = rs.rows.item(0)
+                               QMLUtils.deleteFile(obj.path)
+                               // TODO check result
+                               rs = tx.executeSql('DELETE FROM favorites WHERE id=? AND source=?;', [id, source])
+                               //console.log(rs.rowsAffected)
+                               res = rs.rowsAffected > 0
+                           }
+                       })
+        if (res) {
+            for (var i = root.count-1; i >= 0; i--) {
+                var obj = root.get(i)
+                if (obj.id === id && obj.source === source) {
+                    root.remove(i)
+                    // reset selected index
+                    if (root.selectedIndex === i)
+                        root.selectedIndex = -1
+                    else if (root.selectedIndex > i)
+                        root.selectedIndex--
+                }
+            }
+            // reset selected index, if out of bounds
+            if (root.selectedIndex >= root.count)
+                root.selectedIndex = -1
         }
 
         return res

@@ -111,6 +111,12 @@ void QMLUtils::saveImg(QObject *imageObj, const QString &path) {
     img.save(path);
 }
 
+bool QMLUtils::deleteFile(const QString &path) {
+    if (QFile(path).exists())
+        return QFile(path).remove();
+    return false;
+}
+
 void QMLUtils::setWallpaper(QObject *imageObj, const int offset) {
 #ifdef Q_OS_HARMATTAN
     QGraphicsObject *item = qobject_cast<QGraphicsObject*>(imageObj);
