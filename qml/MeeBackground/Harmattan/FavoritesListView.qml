@@ -21,7 +21,7 @@ Page {
         ToolIcon {
             platformIconId: "toolbar-add"
             onClicked: {
-                pageStack.push(onlineViews)
+                pageStack.push(Qt.createComponent(Qt.resolvedUrl("DesktopprListView.qml")))
             }
         }
         ToolIcon {

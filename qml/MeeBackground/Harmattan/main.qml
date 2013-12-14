@@ -19,13 +19,12 @@ PageStackWindow {
 
     initialPage: mainPage
 
+    FavoritesModel {
+        id: favoritesModel
+    }
     FavoritesListView {
         orientationLock: PageOrientation.LockPortrait
         id: mainPage
-    }
-
-    DesktopprListView {
-        id: onlineViews
     }
 
     PreviewPage {
@@ -56,10 +55,6 @@ PageStackWindow {
     function showInfoBanner(text) {
         myinfobanner.text = text
         myinfobanner.open()
-    }
-
-    FavoritesModel {
-        id: favoritesModel
     }
 
     Component.onCompleted: {

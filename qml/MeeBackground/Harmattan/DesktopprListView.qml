@@ -80,4 +80,8 @@ Page {
             flickableItem: listView
         }
     }
+
+    Component.onCompleted: {
+        desktopprmodel.load()
+    }
 }
