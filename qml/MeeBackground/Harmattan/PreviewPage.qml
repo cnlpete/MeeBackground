@@ -90,6 +90,11 @@ Page {
         platformStyle: BusyIndicatorStyle { size: "large" }
         running: visible
     }
+    ProgressBar {
+        anchors.centerIn: flicker
+        value: img.progress
+        visible: img.status === Image.Loading
+    }
 
     Rectangle {
         anchors {
