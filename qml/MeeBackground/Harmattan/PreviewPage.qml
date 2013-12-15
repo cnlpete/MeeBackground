@@ -148,7 +148,8 @@ Page {
         width: parent.width * .7
         onClicked: {
             QMLUtils.setWallpaper(img, flicker.contentX)
-            showInfoBanner(qsTr("Wallpaper successfully set"))
+            myinfobanner.text = qsTr("Wallpaper successfully set")
+            myinfobanner.show()
         }
     }
 }

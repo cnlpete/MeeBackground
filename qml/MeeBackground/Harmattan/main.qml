@@ -52,11 +52,6 @@ PageStackWindow {
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
-    function showInfoBanner(text) {
-        myinfobanner.text = text
-        myinfobanner.open()
-    }
-
     Component.onCompleted: {
         theme.inverted = true
         favoritesModel.load()
