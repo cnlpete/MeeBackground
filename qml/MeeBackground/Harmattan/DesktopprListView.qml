@@ -39,6 +39,7 @@ Page {
         platformStyle: BusyIndicatorStyle { size: "large" }
         running: visible
         visible: desktopprmodel.running
+        z: 100
     }
 
     PageHeader {
