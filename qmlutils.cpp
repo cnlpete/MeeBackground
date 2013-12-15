@@ -14,6 +14,7 @@
 #include <QGraphicsObject>
 #include <QPainter>
 #include <QStyleOptionGraphicsItem>
+#include <QFile>
 
 #ifdef Q_OS_HARMATTAN
 #include <MDataUri>
