@@ -53,16 +53,12 @@ ListModel {
     }
 
     function isFavorite(id, source) {
-        var db = getDB()
-        var res = false
-        //console.log("checking for '" + id + "' from '" + source + "'")
-        db.transaction(function(tx) {
-                           var rs = tx.executeSql('SELECT id FROM favorites WHERE id=? AND source=?;', [id, source])
-                           res = rs.rows.length > 0
-                       })
-
-        // The function returns false if no entry is found
-        return res
+        for (var i = 0; i < root.count; i++) {
+            var obj = root.get(i)
+            if (obj.id == id && obj.source == source)
+                return true
+        }
+        return false
     }
 
     function addFavorite(id, title, username, source, obj) {
