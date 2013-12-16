@@ -1,4 +1,4 @@
-VERSION = 0.0.2
+VERSION = 0.0.3
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 DEFINES += WALLPATH=\\\"/home/user/.config/meebackground_wallpaper.png\\\"
 DEFINES += GCONFKEY=\\\"/desktop/meego/background/portrait/picture_filename\\\"

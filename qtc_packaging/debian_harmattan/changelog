@@ -1,3 +1,12 @@
+meebackground (0.0.3) unstable; urgency=low
+  * fixed the notificationbanner
+  * added progressbar to image laoding
+  * better aboutpage
+  * added remove Favorite function
+  * added pageheaders
+
+ -- Hauke Schade <cnlpete@cnlpete.de>  Mon, 16 Dec 2013 21:14:26 +1100
+
 meebackground (0.0.2) unstable; urgency=low
   * check if images dir exists and create it if not
 
