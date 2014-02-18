@@ -49,7 +49,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     if (!QDir("/home/user/MyDocs/MeeBackground/").exists())
         QDir().mkdir("/home/user/MyDocs/MeeBackground/");
+    if (!QDir("/home/user/MyDocs/MeeBackground/.thumbnails/").exists())
+        QDir().mkdir("/home/user/MyDocs/MeeBackground/.thumbnails/");
     viewer->rootContext()->setContextProperty("PATH", "/home/user/MyDocs/MeeBackground/");
+    viewer->rootContext()->setContextProperty("THUMBPATH", "/home/user/MyDocs/MeeBackground/.thumbnails/");
 
 #ifdef Q_OS_HARMATTAN
     viewer->setMainQmlFile(QLatin1String("qml/Harmattan/main.qml"));

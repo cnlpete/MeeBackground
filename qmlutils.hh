@@ -26,6 +26,7 @@ public:
     Q_INVOKABLE void shareUrl(const QString &link, const QString &title = QString());
     Q_INVOKABLE void shareImg(const QString &filename);
     Q_INVOKABLE void saveImg(QObject *imageObj, const QString &path);
+    Q_INVOKABLE void makeThumbnail(const QString &imgpath, const QString &thumbpath, int minwidth, int minheight);
     Q_INVOKABLE bool deleteFile(const QString &path);
     Q_INVOKABLE bool fileExists(const QString &path);
     Q_INVOKABLE void setWallpaper(QObject *imageObj, const int offset);

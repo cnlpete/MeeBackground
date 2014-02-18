@@ -112,6 +112,31 @@ void QMLUtils::saveImg(QObject *imageObj, const QString &path) {
     img.save(path);
 }
 
+void QMLUtils::makeThumbnail(const QString &imgpath, const QString &thumbpath, int minwidth, int minheight) {
+    QImage img(imgpath);
+
+    int w = img.width();
+    int h = img.height();
+
+    float wscale = (float)w/(float)minwidth;
+    float hscale = (float)h/(float)minheight;
+
+    qDebug() << "size is " << w << "x" << h << ", resulting in scales " << wscale << " and " << hscale;
+
+    if (wscale > hscale) {
+        w /= hscale;
+        h /= hscale;
+    }
+    else {
+        w /= wscale;
+        h /= wscale;
+    }
+    qDebug() << "New width and size are " << w << "x" << h;
+
+    img = img.scaled(w, h);
+    img.save(thumbpath);
+}
+
 bool QMLUtils::deleteFile(const QString &path) {
     if (QFile(path).exists())
         return QFile(path).remove();

@@ -28,26 +28,32 @@ ListModel {
                     function(tx) {
                         // Create the settings table if it doesn't already exist
                         // If the table exists, this is skipped
-//                        tx.executeSql('DROP TABLE favorites')
+                        //                        tx.executeSql('DROP TABLE favorites')
                         tx.executeSql('CREATE TABLE IF NOT EXISTS favorites (id TEXT UNIQUE, title TEXT, username TEXT, path TEXT UNIQUE, source TEXT, addedat INT(11))')
 
                         // get all
                         var rs = tx.executeSql('SELECT * FROM favorites ORDER BY addedat DESC;')
                         for (var i = 0; i < rs.rows.length; i++) {
                             var obj = rs.rows.item(i)
-                            if (QMLUtils.fileExists(obj.path))
+                            if (QMLUtils.fileExists(obj.path)) {
+                                var thumbpath = THUMBPATH + Qt.md5(obj.path) + ".jpg"
+                                if (!QMLUtils.fileExists(thumbpath)) {
+                                    console.log("thumb for " + obj.path + " does not exist, creating one at " + thumbpath)
+                                    QMLUtils.makeThumbnail(obj.path, thumbpath, 480, 150) //TODO get these VALUES somewhere
+                                }
                                 root.append({
                                                 id: obj.id,
                                                 url: obj.path,
-                                                thumb: obj.path,
+                                                thumb: thumbpath,
                                                 title: obj.title,
                                                 username: obj.username,
                                                 source: obj.source,
                                                 addedat: obj.addedat
                                             })
+                            }
                             //else
-                                //TODO
-                                // remove from database?
+                            //TODO
+                            // remove from database?
                         }
                     })
     }
@@ -64,6 +70,9 @@ ListModel {
     function addFavorite(id, title, username, source, obj) {
         var dst = PATH + Qt.md5(source + id) + ".jpg"
         QMLUtils.saveImg(obj, dst)
+        var thumbpath = THUMBPATH + Qt.md5(dst) + ".jpg"
+        if (!QMLUtils.fileExists(thumbpath))
+            QMLUtils.makeThumbnail(dst, thumbpath, 480, 150) //TODO get these VALUES somewhere
 
         var db = getDB()
         var res = false
@@ -76,7 +85,7 @@ ListModel {
             root.insert(0, {
                             id: id,
                             url: dst,
-                            thumb: dst,
+                            thumb: thumbpath,
                             title: title,
                             username: username,
                             source: source,
@@ -96,6 +105,9 @@ ListModel {
                            if (rs.rows.length == 1) {
                                var obj = rs.rows.item(0)
                                QMLUtils.deleteFile(obj.path)
+                               var thumbpath = THUMBPATH + Qt.md5(obj.path) + ".jpg"
+                               if (QMLUtils.fileExists(thumbpath))
+                                   QMLUtils.deleteFile(thumbpath)
                                // TODO check result
                                rs = tx.executeSql('DELETE FROM favorites WHERE id=? AND source=?;', [id, source])
                                //console.log(rs.rowsAffected)
