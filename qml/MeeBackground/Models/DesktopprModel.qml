@@ -9,8 +9,8 @@
 //You should have received a copy of the GNU General Public License along with MeeBackground (on a Maemo/Meego system there is a copy
 //in /usr/share/common-licenses. If not, see http://www.gnu.org/licenses/.
 
-// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
-import QtQuick 1.1
+import QtQuick 1.1 // harmattan
+//import QtQuick 2.0 // sailfish
 
 ListModel {
     id: root

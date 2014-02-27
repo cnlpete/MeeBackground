@@ -9,8 +9,9 @@
 //You should have received a copy of the GNU General Public License along with MeeBackground (on a Maemo/Meego system there is a copy
 //in /usr/share/common-licenses. If not, see http://www.gnu.org/licenses/.
 
-// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
-import QtQuick 1.1
+import QtQuick 1.1 // harmattan
+//import QtQuick.LocalStorage 2.0 // sailfish
+//import QtQuick 2.0 // sailfish
 
 ListModel {
     id: root
@@ -22,7 +23,8 @@ ListModel {
     property int thumbWidth: 480
 
     function getDB() {
-        return openDatabaseSync("MeeBackground", "1.0", "FavoriteBackgrounds", 1000)
+        return openDatabaseSync("MeeBackground", "1.0", "FavoriteBackgrounds", 1000) // harmattan
+//        return LocalStorage.openDatabaseSync("MeeBackground", "1.0", "FavoriteBackgrounds", 1000) // sailfish
     }
 
     // At the start of the application, we can initialize the tables we need if they haven't been created yet
