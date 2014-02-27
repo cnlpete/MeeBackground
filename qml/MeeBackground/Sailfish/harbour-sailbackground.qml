@@ -43,9 +43,9 @@ ApplicationWindow {
 
         thumbWidth: Screen.width
     }
-//    PreviewPage {
-//        id: previewPage
-//    }
+    PreviewPage {
+        id: previewPage
+    }
 
     Component.onCompleted: {
         favoritesModel.load()

@@ -18,7 +18,7 @@ TARGET = harbour-sailbackground
 
 ##CONFIG += sailfishapp
 
-QT += quick qml
+QT += quick qml widgets
 
 target.path = /usr/bin
 INSTALLS += target
@@ -41,7 +41,10 @@ desktop.files = harbour-sailbackground.desktop
 desktop.path = /usr/share/applications
 INSTALLS += desktop
 
-SOURCES += main.cpp
+HEADERS += qmlutils.hh
+
+SOURCES += main.cpp \
+    qmlutils.cpp
 
 OTHER_FILES += rpm/harbour-sailbackground.spec \
     rpm/harbour-sailbackground.yaml \

@@ -11,10 +11,15 @@
 
 #include "qmlutils.hh"
 
+#if defined(Q_OS_SAILFISH)
+    #include <QtWidgets/QGraphicsObject>
+    #include <QtWidgets/QStyleOptionGraphicsItem>
+#else
+    #include <QGraphicsObject>
+    #include <QStyleOptionGraphicsItem>
+#endif
 #include <QDebug>
-#include <QGraphicsObject>
 #include <QPainter>
-#include <QStyleOptionGraphicsItem>
 #include <QFile>
 
 #ifdef Q_OS_HARMATTAN

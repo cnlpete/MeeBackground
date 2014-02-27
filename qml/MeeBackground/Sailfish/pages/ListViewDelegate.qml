@@ -43,8 +43,8 @@ ListItem {
             onClicked: {
                 root.clicked()
 //                pageStack.push("DesktopprListView.qml")
-               // previewPage.set(title, username, id, url, thumb, source)
-               // pageStack.push(previewPage)
+                previewPage.set(title, username, id, url, thumb, source)
+                pageStack.push(previewPage)
             }
         }
 

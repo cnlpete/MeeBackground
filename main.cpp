@@ -35,7 +35,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     app->setApplicationVersion(APP_VERSION);
+#if defined(Q_OS_SAILFISH)
+    app->setApplicationName("SailBackground");
+#else
     app->setApplicationName("MeeBackground");
+#endif
     app->setOrganizationName("Hauke Schade");
 
 #if defined(Q_OS_SAILFISH)
@@ -43,20 +47,20 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #else
     QmlApplicationViewer *viewer = new QmlApplicationViewer();
     viewer->setOrientation(QmlApplicationViewer::ScreenOrientationLockPortrait);
-    viewer->rootContext()->setContextProperty("QMLUtils", QMLUtils::instance());
 #endif
 
+    viewer->rootContext()->setContextProperty("QMLUtils", QMLUtils::instance());
     viewer->rootContext()->setContextProperty("APP_VERSION", APP_VERSION);
 
 
 #if defined(Q_OS_SAILFISH)
-    if (!QDir(QDir::homePath() + "/MeeBackground/").exists())
-        QDir().mkdir(QDir::homePath() + "/MeeBackground/");
-    if (!QDir(QDir::homePath() + "/MeeBackground/.thumbnails/").exists())
-        QDir().mkdir(QDir::homePath() + "/MeeBackground/.thumbnails/");
+    if (!QDir(QDir::homePath() + "/SailBackground/").exists())
+        QDir().mkdir(QDir::homePath() + "/SailBackground/");
+    if (!QDir(QDir::homePath() + "/SailBackground/.thumbnails/").exists())
+        QDir().mkdir(QDir::homePath() + "/SailBackground/.thumbnails/");
 
-    viewer->rootContext()->setContextProperty("PATH", QDir::homePath() + "/MeeBackground/");
-    viewer->rootContext()->setContextProperty("THUMBPATH", QDir::homePath() + "/MeeBackground/.thumbnails/");
+    viewer->rootContext()->setContextProperty("PATH", QDir::homePath() + "/SailBackground/");
+    viewer->rootContext()->setContextProperty("THUMBPATH", QDir::homePath() + "/SailBackground/.thumbnails/");
 #else
     if (!QDir(QDir::homePath() + "/MyDocs/MeeBackground/").exists())
         QDir().mkdir(QDir::homePath() + "/MyDocs/MeeBackground/");
