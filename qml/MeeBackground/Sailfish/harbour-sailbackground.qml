@@ -31,11 +31,57 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "pages"
+import "../Models"
 
-ApplicationWindow
-{
-    initialPage: Component { FirstPage { } }
+ApplicationWindow {
+    id: root
+    initialPage: Component { FavoritesListView { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
+
+    FavoritesModel {
+        id: favoritesModel
+
+        thumbWidth: Screen.width
+    }
+//    PreviewPage {
+//        id: previewPage
+//    }
+
+    Component.onCompleted: {
+        favoritesModel.load()
+    }
+
+    function pushAbout() {
+        var params = {
+            title : 'SailBackground ' + APP_VERSION,
+            iconSource: Qt.resolvedUrl('/usr/share/icons/hicolor/86x86/apps/harbour-sailbackground.png'),
+            slogan : 'Because backgrounds are important !',
+            donatebutton: qsTr("Buy me a beer"),
+            donateurl: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WUWGSGAK8K7ZN",
+            text: 'A nice looking wallpaper setting application.' +
+                  '\nWeb Site : http://hauke-schade.de' +
+                  '\n\nBy Hauke Schade' +
+                  '\nLicenced under GPLv3' +
+                  '\nWallpapers by desktoppr.co'+
+                  '\n\nDerivated and Inspired by\nBenoît HERVIER (Khertan)\'s "Wleux" app' +
+                  '\nhttp://khertan.net/Wleux' +
+                  '\nwhich was inspired by Thomas Perl\'s "Mustr" app' +
+                  '\nwhich was inspired by Lucas Rocha\'s "Pattrn" app' +
+                  '\nMustr Tab support by Seppo Tomperi' +
+                  '\n\nThanks to :' +
+                  '\nBenoît HERVIER (Khertan)' +
+                  '\nThomas Perl' +
+                  '\nThe team running desktoppr.co' +
+                  '\nFaenil on #harmattan',
+//            homepageurl: constant.sourceRepoSite,
+            issuetrackertext: qsTr("If you encounter bugs or have feature requests, please visit the Issue Tracker"),
+            issuetrackerurl: "https://github.com/cnlpete/meebackground/issues"
+        }
+        pageStack.push("pages/AboutPage.qml", params)
+    }
 }
+
+
+
 
 

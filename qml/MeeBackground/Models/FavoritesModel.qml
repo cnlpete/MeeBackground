@@ -17,6 +17,10 @@ ListModel {
     property int selectedIndex: -1
     property bool running: false
 
+    //TODO get these VALUES somewhere
+    property int thumbHeight: 150
+    property int thumbWidth: 480
+
     function getDB() {
         return openDatabaseSync("MeeBackground", "1.0", "FavoriteBackgrounds", 1000)
     }
@@ -39,7 +43,7 @@ ListModel {
                                 var thumbpath = THUMBPATH + Qt.md5(obj.path) + ".jpg"
                                 if (!QMLUtils.fileExists(thumbpath)) {
                                     console.log("thumb for " + obj.path + " does not exist, creating one at " + thumbpath)
-                                    QMLUtils.makeThumbnail(obj.path, thumbpath, 480, 150) //TODO get these VALUES somewhere
+                                    QMLUtils.makeThumbnail(obj.path, thumbpath, root.thumbWidth, root.thumbHeight)
                                 }
                                 root.append({
                                                 id: obj.id,

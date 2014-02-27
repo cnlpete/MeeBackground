@@ -63,10 +63,6 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(-,root,root,-)
-/usr/share/applications
-/usr/share/icons/hicolor/86x86/apps
-/usr/share/harbour-sailbackground/qml
-/usr/bin
 %{_datadir}/applications
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}

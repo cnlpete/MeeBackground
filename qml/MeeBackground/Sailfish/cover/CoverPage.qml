@@ -32,22 +32,9 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 CoverBackground {
-    Label {
-        id: label
-        anchors.centerIn: parent
-        text: "My Cover"
-    }
-
-    CoverActionList {
-        id: coverAction
-
-        CoverAction {
-            iconSource: "image://theme/icon-cover-next"
-        }
-
-        CoverAction {
-            iconSource: "image://theme/icon-cover-pause"
-        }
+    CoverPlaceholder {
+        text: "SailBackground"
+        icon.source: "/usr/share/icons/hicolor/86x86/apps/harbour-sailbackground.png"
     }
 }
 

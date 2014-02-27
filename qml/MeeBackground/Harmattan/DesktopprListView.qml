@@ -32,6 +32,9 @@ Page {
 
     DesktopprModel {
         id: desktopprmodel
+        Component.onCompleted: {
+            desktopprmodel.load()
+        }
     }
 
     BusyIndicator {
@@ -80,9 +83,5 @@ Page {
         ScrollDecorator {
             flickableItem: listView
         }
-    }
-
-    Component.onCompleted: {
-        desktopprmodel.load()
     }
 }
