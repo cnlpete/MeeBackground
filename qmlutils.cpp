@@ -11,16 +11,17 @@
 
 #include "qmlutils.hh"
 
+#include <QDebug>
 #include <QGraphicsObject>
 #include <QPainter>
 #include <QStyleOptionGraphicsItem>
 #include <QFile>
 
 #ifdef Q_OS_HARMATTAN
-#include <MDataUri>
-#include <QFileInfo>
-#include <maemo-meegotouch-interfaces/shareuiinterface.h>
-#include <gq/GConfItem>
+    #include <MDataUri>
+    #include <QFileInfo>
+    #include <maemo-meegotouch-interfaces/shareuiinterface.h>
+    #include <gq/GConfItem>
 #endif
 
 QScopedPointer<QMLUtils> QMLUtils::m_instance(0);

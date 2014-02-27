@@ -16,6 +16,7 @@
         #include <QtQuick>
     #endif
 #else
+    #include <QDebug>
     #include <QtGui/QApplication>
     #include <QDeclarativeContext>
     #include "qmlapplicationviewer.h"
@@ -47,22 +48,32 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     viewer->rootContext()->setContextProperty("APP_VERSION", APP_VERSION);
 
-    if (!QDir("/home/user/MyDocs/MeeBackground/").exists())
-        QDir().mkdir("/home/user/MyDocs/MeeBackground/");
-    if (!QDir("/home/user/MyDocs/MeeBackground/.thumbnails/").exists())
-        QDir().mkdir("/home/user/MyDocs/MeeBackground/.thumbnails/");
-    viewer->rootContext()->setContextProperty("PATH", "/home/user/MyDocs/MeeBackground/");
-    viewer->rootContext()->setContextProperty("THUMBPATH", "/home/user/MyDocs/MeeBackground/.thumbnails/");
 
-#ifdef Q_OS_HARMATTAN
-    viewer->setMainQmlFile(QLatin1String("qml/Harmattan/main.qml"));
-#elif defined(Q_OS_SAILFISH)
-    viewer->setSource(SailfishApp::pathTo("qml/Sailfish/harbour-sailbackground.qml"));
+#if defined(Q_OS_SAILFISH)
+    if (!QDir(QDir::homePath() + "/MeeBackground/").exists())
+        QDir().mkdir(QDir::homePath() + "/MeeBackground/");
+    if (!QDir(QDir::homePath() + "/MeeBackground/.thumbnails/").exists())
+        QDir().mkdir(QDir::homePath() + "/MeeBackground/.thumbnails/");
+
+    viewer->rootContext()->setContextProperty("PATH", QDir::homePath() + "/MeeBackground/");
+    viewer->rootContext()->setContextProperty("THUMBPATH", QDir::homePath() + "/MeeBackground/.thumbnails/");
+#else
+    if (!QDir(QDir::homePath() + "/MyDocs/MeeBackground/").exists())
+        QDir().mkdir(QDir::homePath() + "/MyDocs/MeeBackground/");
+    if (!QDir(QDir::homePath() + "/MyDocs/MeeBackground/.thumbnails/").exists())
+        QDir().mkdir(QDir::homePath() + "/MyDocs/MeeBackground/.thumbnails/");
+
+    viewer->rootContext()->setContextProperty("PATH", QDir::homePath() + "/MyDocs/MeeBackground/");
+    viewer->rootContext()->setContextProperty("THUMBPATH", QDir::homePath() + "/MyDocs/MeeBackground/.thumbnails/");
 #endif
 
-#ifdef Q_OS_HARMATTAN
-    viewer->showExpanded();
-#elif defined(Q_OS_SAILFISH)
+#if defined(Q_OS_SAILFISH)
+    viewer->setSource(SailfishApp::pathTo("qml/Sailfish/harbour-sailbackground.qml"));
+#else
+    viewer->setMainQmlFile(QLatin1String("qml/Harmattan/main.qml"));
+#endif
+
+#if defined(Q_OS_SAILFISH)
     viewer->show();
 #else
     viewer->showExpanded();
